@@ -1,7 +1,10 @@
 console.log("Script Running");
 
 
+
+
 const shift = (sprite, col) => (col <= 7 ? sprite.style.setProperty("grid-column", col) : null);
+
 
 let pepperoni_step = 1;
 let veggie_step = 1;
@@ -9,30 +12,54 @@ let bbq_step = 1;
 
 
 
-// Query selectors for all buttons and scooters go here
 
 
 
-// Write the function that moves the pepperoni scooter forward
-// Increase the pepperoni position
-// Call the helper function to update the scooter position
-// Call the winner check function
 
 
-
-// Write the function that moves the veggie scooter forward
-
-
-
-// Write the function that moves the bbq scooter forward
-
-
-
-// Write a function that checks if a scooter reached column 7
-// If so, display the winner message
-// Disable all buttons when a winner is found
+const pepperoniscooter = document.querySelector("#pepperoni-scooter");
+const pepperonibtn = document.querySelector("#pepperoni-button");
+const veggiescooter = document.querySelector("#veggie-scooter");
+const veggiebtn = document.querySelector("#veggie-button");
+const bbqscooter = document.querySelector("#bbq-scooter");
+const bbqbtn = document.querySelector("#bbq-button");
+const winner = document.querySelector("#winner");
 
 
+function movepepperoni () {
+    pepperoni_step += 1;
+    shift(pepperoniscooter, pepperoni_step)
+}
+function moveveggie () {
+    veggie_step += 1;
+    shift(veggiescooter, veggie_step)
+}
+function movebbq () {
+    bbq_step += 1;
+    shift(bbqscooter, bbq_step)
+}
 
-// Add event listeners for each button
-// Each button should trigger its own movement function
+
+function checkwinner1 () {
+ if (pepperoni_step > 6) {
+    winner.textContent = `the pepperoni scooter won!`;
+ }
+}
+function checkwinner2 () {
+ if (veggie_step > 6) {
+    winner.textContent = `the veggie scooter won!`;
+ }
+}
+function checkwinner3 () {
+ if (bbq_step > 6) {
+    winner.textContent = `the bbq scooter won!`;
+ }
+}
+
+
+pepperonibtn.addEventListener("click",movepepperoni );
+pepperonibtn.addEventListener("click",checkwinner1 );
+veggiebtn.addEventListener("click",moveveggie );
+veggiebtn.addEventListener("click",checkwinner2 );
+bbqbtn.addEventListener("click",movebbq );
+bbqbtn.addEventListener("click",checkwinner3 );
